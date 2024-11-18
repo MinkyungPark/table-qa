@@ -84,28 +84,3 @@ trainer.train()
 
 model.config.use_cache = True
 trainer.model.save_pretrained(f"lora_adapter_{args.table_form}")
-
-# merged = PeftModel.from_pretrained(model, "lora_adapter", device_map='auto')
-# merged = merged.merge_and_unload()
-# merged.push_to_hub("gemma-2-2b-tune")
-
-# messages = [{"role": "user", "content": "Hello doctor, I have bad and painfull acne on face and body. How can I get rid of it?"}]
-# prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-# inputs = tokenizer(prompt, return_tensors='pt', padding=True, truncation=True).to("cuda")
-
-# # Optimized generation with tuned sampling strategies
-# outputs = model.generate(
-#     **inputs,
-#     max_length=350,  # Increase max length for complex answers
-#     num_return_sequences=1,
-#     top_k=50,
-#     top_p=0.85,  # Narrow top-p for more deterministic output
-#     temperature=0.3,  # Slightly higher temperature for balance between creativity and accuracy
-#     no_repeat_ngram_size=3,
-# )
-
-# # Decode and clean up the output
-# text = tokenizer.decode(outputs[0], skip_special_tokens=True)
-# response = text.split("assistant")[1].strip()
-
-# print(response)
